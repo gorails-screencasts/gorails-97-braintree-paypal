@@ -7,7 +7,12 @@
 
 <p>
   <strong>Video:</strong>
-  <%= @episode.video %>
+
+  <% if user_signed_in? && current_user.subscribed? %>
+    <%= @episode.video %>
+  <% else %>
+    <%= link_to 'Subscribe To Watch', new_subscription_path %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_episode_path(@episode) %> |
